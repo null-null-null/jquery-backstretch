@@ -6,7 +6,7 @@
  * Licensed under the MIT license.
  */
 
-;(function ($, window, undefined) {
+(function ($, window, undefined) {
   'use strict';
 
   /* PLUGIN DEFINITION
@@ -192,12 +192,12 @@
 
             // Make adjustments based on image ratio
             if (bgHeight >= rootHeight) {
-                if(this.options.centeredY) {
-                  bgOffset = (bgHeight - rootHeight) / 2;
-                }
-                else if(this.options.offsetY) {
-                  wiggleRoom = rootHeight - this.$img.height;
+                if(this.options.offsetY) {
+                  wiggleRoom = bgWidth - rootHeight;
                   bgOffset = wiggleRoom * this.options.offsetY;
+                }
+                else if(this.options.centeredY) {
+                  bgOffset = (bgHeight - rootHeight) / 2;
                 }
                 if (bgOffset) {
                   bgCSS.top = '-' + bgOffset + 'px';
@@ -205,15 +205,15 @@
             } else {
                 bgHeight = rootHeight;
                 bgWidth = bgHeight * this.$img.data('ratio');
-                if(this.options.centeredX) {
-                  bgOffset = (bgWidth - rootWidth) / 2;
-                }
-                else if(this.options.offsetX) {
-                  wiggleRoom = rootWidth - this.$img.width;
+                if(this.options.offsetX) {
+                  wiggleRoom = bgWidth - rootWidth;
                   bgOffset = wiggleRoom * this.options.offsetX;
                 }
+                else if(this.options.centeredX) {
+                  bgOffset = (bgWidth - rootWidth) / 2;
+                }
                 if (bgOffset) {
-                  bgCSS.oeft = '-' + bgOffset + 'px';
+                  bgCSS.left = '-' + bgOffset + 'px';
                 }
             }
 
